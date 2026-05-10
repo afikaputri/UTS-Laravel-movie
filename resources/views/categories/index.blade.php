@@ -21,32 +21,13 @@
         }
 
         .title {
-            font-weight: bold;
             color: #0d6efd;
+            font-weight: bold;
         }
 
-        .table thead {
-            background-color: #0d6efd;
-            color: white;
-        }
-
-        .table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .search-input {
-            border-radius: 10px;
-        }
-
-        .btn-search {
-            border-radius: 10px;
-            font-weight: 500;
-        }
-
-        .pagination {
-            justify-content: center;
-            margin-top: 20px;
+        table th {
+            background-color: #0d6efd !important;
+            color: white !important;
         }
     </style>
 
@@ -64,25 +45,36 @@
                     🎬 Category Data
                 </h2>
 
-                <span class="badge bg-primary p-2">
-                    Total: {{ $categories->total() }}
-                </span>
+                <a href="/categories/create" class="btn btn-success">
+                    + Add Category
+                </a>
 
             </div>
 
+            @if (session('success'))
+                <div class="alert alert-success">
+
+                    {{ session('success') }}
+
+                </div>
+            @endif
+
             <form action="/categories" method="GET" class="mb-4">
 
-                <div class="row g-2">
+                <div class="row">
 
-                    <div class="col-md-10">
-                        <input type="text" name="search" class="form-control search-input"
-                            placeholder="Search category..." value="{{ request('search') }}">
+                    <div class="col-md-9">
+
+                        <input type="text" name="search" class="form-control" placeholder="Search category...">
+
                     </div>
 
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary btn-search w-100">
+                    <div class="col-md-3">
+
+                        <button type="submit" class="btn btn-primary w-100">
                             Search
                         </button>
+
                     </div>
 
                 </div>
@@ -91,63 +83,60 @@
 
             <div class="table-responsive">
 
-                <table class="table table-hover table-bordered align-middle">
+                <table class="table table-bordered table-hover align-middle">
 
                     <thead>
+
                         <tr>
-                            <th width="5%">No</th>
+
+                            <th width="80">No</th>
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Description</th>
+
                         </tr>
+
                     </thead>
 
                     <tbody>
 
                         @forelse ($categories as $category)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->slug }}</td>
-                                <td>{{ $category->description }}</td>
+
+                                <td>
+                                    {{ $loop->iteration }}
+                                </td>
+
+                                <td>
+                                    {{ $category->name }}
+                                </td>
+
+                                <td>
+                                    {{ $category->slug }}
+                                </td>
+
+                                <td>
+                                    {{ $category->description }}
+                                </td>
+
                             </tr>
 
                         @empty
 
                             <tr>
-                                <td colspan="4" class="text-center text-muted">
-                                    Data not found
+
+                                <td colspan="4" class="text-center">
+
+                                    Data category masih kosong
+
                                 </td>
+
                             </tr>
                         @endforelse
 
                     </tbody>
 
                 </table>
-
-            </div>
-
-            <div class="mt-4 d-flex justify-content-between">
-
-                @if ($categories->onFirstPage())
-                    <button class="btn btn-secondary" disabled>
-                        Previous
-                    </button>
-                @else
-                    <a href="{{ $categories->previousPageUrl() }}" class="btn btn-primary">
-                        Previous
-                    </a>
-                @endif
-
-                @if ($categories->hasMorePages())
-                    <a href="{{ $categories->nextPageUrl() }}" class="btn btn-primary">
-                        Next
-                    </a>
-                @else
-                    <button class="btn btn-secondary" disabled>
-                        Next
-                    </button>
-                @endif
 
             </div>
 
