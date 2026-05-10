@@ -53,6 +53,14 @@
 
             </div>
 
+            @if (session('success'))
+                <div class="alert alert-success">
+
+                    {{ session('success') }}
+
+                </div>
+            @endif
+
             <form action="/movies" method="GET">
 
                 <div class="row mb-4">
@@ -109,6 +117,7 @@
                         <th>Director</th>
                         <th>Year</th>
                         <th>Rating</th>
+                        <th width="120">Action</th>
 
                     </tr>
 
@@ -143,13 +152,23 @@
                                 ⭐ {{ $movie->rating }}
                             </td>
 
+                            <td>
+
+                                <a href="/movies/{{ $movie->id }}/edit" class="btn btn-warning btn-sm">
+
+                                    Edit
+
+                                </a>
+
+                            </td>
+
                         </tr>
 
                     @empty
 
                         <tr>
 
-                            <td colspan="6" class="text-center">
+                            <td colspan="7" class="text-center">
 
                                 Data movie belum ada
 

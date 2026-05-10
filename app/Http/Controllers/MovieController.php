@@ -56,4 +56,30 @@ class MovieController extends Controller
             ->with('success', 'Movie berhasil ditambahkan');
     }
 
+    public function edit($id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        $categories = Category::all();
+
+        return view('movies.edit', compact('movie', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        $movie->update([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'director' => $request->director,
+            'release_year' => $request->release_year,
+            'rating' => $request->rating,
+            'synopsis' => $request->synopsis,
+        ]);
+
+        return redirect('/movies')
+            ->with('success', 'Movie berhasil diupdate');
+    }
+
 }
