@@ -39,13 +39,23 @@
 
         <div class="main-card">
 
-            <h2 class="title mb-4">
-                🎬 Movie Data
-            </h2>
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <form action="/movies" method="GET" class="mb-4">
+                <h2 class="title">
+                    🎬 Movie Data
+                </h2>
 
-                <div class="row g-2">
+                <a href="/movies/create" class="btn btn-success">
+
+                    + Add Movie
+
+                </a>
+
+            </div>
+
+            <form action="/movies" method="GET">
+
+                <div class="row mb-4">
 
                     <div class="col-md-4">
 
@@ -75,8 +85,10 @@
 
                     <div class="col-md-4">
 
-                        <button type="submit" class="btn btn-primary w-100">
+                        <button class="btn btn-primary w-100">
+
                             Search & Filter
+
                         </button>
 
                     </div>
@@ -85,74 +97,70 @@
 
             </form>
 
-            <div class="table-responsive">
+            <table class="table table-bordered">
 
-                <table class="table table-bordered table-hover align-middle">
+                <thead>
 
-                    <thead>
+                    <tr>
 
+                        <th>No</th>
+                        <th>Category</th>
+                        <th>Title</th>
+                        <th>Director</th>
+                        <th>Year</th>
+                        <th>Rating</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @forelse ($movies as $movie)
                         <tr>
 
-                            <th>No</th>
-                            <th>Category</th>
-                            <th>Title</th>
-                            <th>Director</th>
-                            <th>Year</th>
-                            <th>Rating</th>
+                            <td>
+                                {{ $loop->iteration }}
+                            </td>
+
+                            <td>
+                                {{ $movie->category->name }}
+                            </td>
+
+                            <td>
+                                {{ $movie->title }}
+                            </td>
+
+                            <td>
+                                {{ $movie->director }}
+                            </td>
+
+                            <td>
+                                {{ $movie->release_year }}
+                            </td>
+
+                            <td>
+                                ⭐ {{ $movie->rating }}
+                            </td>
 
                         </tr>
 
-                    </thead>
+                    @empty
 
-                    <tbody>
+                        <tr>
 
-                        @forelse ($movies as $movie)
-                            <tr>
+                            <td colspan="6" class="text-center">
 
-                                <td>
-                                    {{ $loop->iteration }}
-                                </td>
+                                Data movie belum ada
 
-                                <td>
-                                    {{ $movie->category->name }}
-                                </td>
+                            </td>
 
-                                <td>
-                                    {{ $movie->title }}
-                                </td>
+                        </tr>
+                    @endforelse
 
-                                <td>
-                                    {{ $movie->director }}
-                                </td>
+                </tbody>
 
-                                <td>
-                                    {{ $movie->release_year }}
-                                </td>
-
-                                <td>
-                                    ⭐ {{ $movie->rating }}
-                                </td>
-
-                            </tr>
-
-                        @empty
-
-                            <tr>
-
-                                <td colspan="6" class="text-center">
-
-                                    Data movie masih kosong
-
-                                </td>
-
-                            </tr>
-                        @endforelse
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            </table>
 
         </div>
 

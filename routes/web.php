@@ -15,3 +15,5 @@ Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::get('/movies', [MovieController::class, 'index']);
+Route::get('/movies/create', [MovieController::class, 'create']);
+Route::post('/movies', [MovieController::class, 'store']);

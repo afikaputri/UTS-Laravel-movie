@@ -33,4 +33,27 @@ class MovieController extends Controller
 
         return view('movies.index', compact('movies', 'categories'));
     }
+
+    public function create()
+    {
+        $categories = Category::all();
+
+        return view('movies.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        Movie::create([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'director' => $request->director,
+            'release_year' => $request->release_year,
+            'rating' => $request->rating,
+            'synopsis' => $request->synopsis,
+        ]);
+
+        return redirect('/movies')
+            ->with('success', 'Movie berhasil ditambahkan');
+    }
+
 }
