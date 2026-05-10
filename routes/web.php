@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MovieController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,3 +14,4 @@ Route::get('/categories/{id}/edit', [CategoryController::class, 'edit']);
 Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
+Route::get('/movies', [MovieController::class, 'index']);
