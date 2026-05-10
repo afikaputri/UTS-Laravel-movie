@@ -93,6 +93,7 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Description</th>
+                            <th width="150">Action</th>
 
                         </tr>
 
@@ -119,13 +120,21 @@
                                     {{ $category->description }}
                                 </td>
 
+                                <td>
+
+                                    <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
+                                </td>
+
                             </tr>
 
                         @empty
 
                             <tr>
 
-                                <td colspan="4" class="text-center">
+                                <td colspan="5" class="text-center">
 
                                     Data category masih kosong
 

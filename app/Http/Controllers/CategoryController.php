@@ -19,10 +19,10 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    public function create()
-{
-    return view('categories.create');
-}
+        public function create()
+    {
+        return view('categories.create');
+    }
 
     public function store(Request $request)
     {
@@ -41,4 +41,32 @@ class CategoryController extends Controller
         return redirect('/categories')
             ->with('success', 'Category berhasil ditambahkan');
     }
+
+        public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+            'description' => 'required',
+        ]);
+
+        $category = Category::findOrFail($id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+        ]);
+
+        return redirect('/categories')
+            ->with('success', 'Category berhasil diupdate');
+    }
+
 }

@@ -9,3 +9,5 @@ Route::get('/', function () {
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/create', [CategoryController::class, 'create']);
 Route::post('/categories', [CategoryController::class, 'store']);
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit']);
+Route::put('/categories/{id}', [CategoryController::class, 'update']);
