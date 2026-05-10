@@ -117,7 +117,7 @@
                         <th>Director</th>
                         <th>Year</th>
                         <th>Rating</th>
-                        <th width="180">Action</th>
+                        <th width="250">Action</th>
 
                     </tr>
 
@@ -153,6 +153,12 @@
                             </td>
 
                             <td>
+
+                                <a href="/movies/{{ $movie->id }}" class="btn btn-info btn-sm text-white">
+
+                                    Detail
+
+                                </a>
 
                                 <a href="/movies/{{ $movie->id }}/edit" class="btn btn-warning btn-sm">
 

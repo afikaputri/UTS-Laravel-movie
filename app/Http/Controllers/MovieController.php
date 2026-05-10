@@ -91,4 +91,11 @@ class MovieController extends Controller
         return redirect('/movies')
             ->with('success', 'Movie berhasil dihapus');
     }
+
+    public function show($id)
+    {
+        $movie = Movie::with('category')->findOrFail($id);
+
+        return view('movies.show', compact('movie'));
+    }
 }
