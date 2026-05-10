@@ -117,7 +117,7 @@
                         <th>Director</th>
                         <th>Year</th>
                         <th>Rating</th>
-                        <th width="120">Action</th>
+                        <th width="180">Action</th>
 
                     </tr>
 
@@ -159,6 +159,20 @@
                                     Edit
 
                                 </a>
+
+                                <form action="/movies/{{ $movie->id }}" method="POST" class="d-inline">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Yakin ingin menghapus movie ini?')">
+
+                                        Delete
+
+                                    </button>
+
+                                </form>
 
                             </td>
 

@@ -82,4 +82,13 @@ class MovieController extends Controller
             ->with('success', 'Movie berhasil diupdate');
     }
 
+    public function destroy($id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        $movie->delete();
+
+        return redirect('/movies')
+            ->with('success', 'Movie berhasil dihapus');
+    }
 }
