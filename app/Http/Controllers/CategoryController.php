@@ -69,4 +69,14 @@ class CategoryController extends Controller
             ->with('success', 'Category berhasil diupdate');
     }
 
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return redirect('/categories')
+            ->with('success', 'Category berhasil dihapus');
+    }
+
 }

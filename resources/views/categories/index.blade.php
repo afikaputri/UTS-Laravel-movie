@@ -93,7 +93,7 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Description</th>
-                            <th width="150">Action</th>
+                            <th width="220">Action</th>
 
                         </tr>
 
@@ -125,6 +125,18 @@
                                     <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>
+
+                                    <form action="/categories/{{ $category->id }}" method="POST" class="d-inline">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                            Delete
+                                        </button>
+
+                                    </form>
 
                                 </td>
 
