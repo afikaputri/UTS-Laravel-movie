@@ -79,4 +79,11 @@ class CategoryController extends Controller
             ->with('success', 'Category berhasil dihapus');
     }
 
+        public function show($id)
+    {
+        $category = Category::findOrFail($id);
+
+        return view('categories.show', compact('category'));
+    }
+
 }

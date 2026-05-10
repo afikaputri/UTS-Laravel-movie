@@ -93,7 +93,7 @@
                             <th>Name</th>
                             <th>Slug</th>
                             <th>Description</th>
-                            <th width="220">Action</th>
+                            <th width="300">Action</th>
 
                         </tr>
 
@@ -121,6 +121,10 @@
                                 </td>
 
                                 <td>
+
+                                    <a href="/categories/{{ $category->id }}" class="btn btn-info btn-sm text-white">
+                                        Detail
+                                    </a>
 
                                     <a href="/categories/{{ $category->id }}/edit" class="btn btn-warning btn-sm">
                                         Edit
